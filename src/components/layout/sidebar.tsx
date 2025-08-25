@@ -8,17 +8,16 @@ import {
   Settings,
   Menu,
   X,
-  TrendingUp,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+// import logoImage from "@/assets/logo.png";
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard },
   { name: "Leads", href: "/leads", icon: Users },
   { name: "Tasks", href: "/tasks", icon: CheckSquare },
   { name: "Assistant", href: "/assistant", icon: MessageSquare },
-  { name: "Analytics", href: "/analytics", icon: TrendingUp },
   { name: "Settings", href: "/settings", icon: Settings },
 ];
 
@@ -39,9 +38,13 @@ export function Sidebar({ className }: SidebarProps) {
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-border">
         {!isCollapsed && (
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 gradient-primary rounded-lg flex items-center justify-center">
-              <TrendingUp className="w-5 h-5 text-primary-foreground" />
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden bg-gradient-primary">
+              <img 
+                src="/lovable-uploads/e7533d7f-8b8f-419a-82f9-84b745556f0b.png" 
+                alt="Prospectio Logo" 
+                className="w-6 h-6 object-contain filter brightness-0 invert"
+              />
             </div>
             <span className="text-lg font-bold text-foreground">Prospectio</span>
           </div>

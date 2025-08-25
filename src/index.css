@@ -8,61 +8,61 @@ All colors MUST be HSL for consistency.
 
 @layer base {
   :root {
-    /* Background & Surfaces */
-    --background: 240 10% 99%;
-    --foreground: 240 10% 3.9%;
-    --surface: 240 4.8% 95.9%;
+    /* Background & Surfaces - Inspired by the golden logo */
+    --background: 35 10% 98%;
+    --foreground: 20 14% 8%;
+    --surface: 40 8% 96%;
     
     /* Cards & Overlays */
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 20 14% 8%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+    --popover-foreground: 20 14% 8%;
 
-    /* Brand Colors - Indigo/Violet palette */
-    --primary: 239 84% 67%;
-    --primary-foreground: 0 0% 98%;
-    --primary-light: 245 58% 85%;
-    --primary-dark: 239 84% 55%;
+    /* Brand Colors - Golden/Bronze palette from logo */
+    --primary: 45 70% 58%; /* Rich golden color */
+    --primary-foreground: 20 14% 8%;
+    --primary-light: 45 65% 75%;
+    --primary-dark: 35 75% 45%;
     
-    /* Secondary - Cool grays */
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
+    /* Secondary - Warm grays with golden undertones */
+    --secondary: 40 6% 93%;
+    --secondary-foreground: 25 8% 15%;
     
-    /* Accents - Violet touches */
-    --accent: 269 91% 90%;
-    --accent-foreground: 269 91% 25%;
+    /* Accents - Complementary warm tones */
+    --accent: 25 45% 88%;
+    --accent-foreground: 25 45% 20%;
     
-    /* Status Colors */
-    --success: 142 76% 36%;
+    /* Status Colors - Warmer variants */
+    --success: 120 40% 50%;
     --success-foreground: 0 0% 98%;
-    --warning: 38 92% 50%;
+    --warning: 35 85% 55%;
     --warning-foreground: 0 0% 98%;
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 75% 55%;
     --destructive-foreground: 0 0% 98%;
     
-    /* Neutral System */
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 239 84% 67%;
+    /* Neutral System - Warm undertones */
+    --muted: 40 6% 93%;
+    --muted-foreground: 25 8% 45%;
+    --border: 40 8% 88%;
+    --input: 40 8% 88%;
+    --ring: 45 70% 58%;
 
-    /* Lead Status Colors */
-    --status-cold: 200 98% 39%;
-    --status-warm: 38 92% 50%;
-    --status-hot: 0 84% 60%;
+    /* Lead Status Colors - Warmer variants */
+    --status-cold: 200 50% 50%;
+    --status-warm: 35 85% 55%;
+    --status-hot: 0 75% 55%;
     
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(239 84% 67%), hsl(269 91% 65%));
-    --gradient-surface: linear-gradient(180deg, hsl(240 10% 99%), hsl(240 4.8% 95.9%));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(240 4.8% 97%));
+    /* Gradients - Golden inspired */
+    --gradient-primary: linear-gradient(135deg, hsl(45 70% 58%), hsl(35 75% 65%));
+    --gradient-surface: linear-gradient(180deg, hsl(35 10% 98%), hsl(40 8% 96%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(40 8% 97%));
     
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 hsl(240 5.9% 10% / 0.05);
-    --shadow-md: 0 4px 6px -1px hsl(240 5.9% 10% / 0.1), 0 2px 4px -1px hsl(240 5.9% 10% / 0.06);
-    --shadow-lg: 0 10px 15px -3px hsl(240 5.9% 10% / 0.1), 0 4px 6px -2px hsl(240 5.9% 10% / 0.05);
-    --shadow-glow: 0 0 20px hsl(239 84% 67% / 0.25);
+    /* Shadows - Golden glow */
+    --shadow-sm: 0 1px 2px 0 hsl(20 14% 8% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(20 14% 8% / 0.1), 0 2px 4px -1px hsl(20 14% 8% / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(20 14% 8% / 0.1), 0 4px 6px -2px hsl(20 14% 8% / 0.05);
+    --shadow-glow: 0 0 20px hsl(45 70% 58% / 0.3);
     
     /* Animations */
     --transition-base: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -88,49 +88,49 @@ All colors MUST be HSL for consistency.
   }
 
   .dark {
-    /* Dark mode - Professional B2B look */
-    --background: 240 10% 3.9%;
-    --foreground: 240 5.9% 90%;
-    --surface: 240 10% 8%;
+    /* Dark mode - Warm dark with golden accents */
+    --background: 20 14% 8%;
+    --foreground: 40 8% 95%;
+    --surface: 20 12% 12%;
     
-    --card: 240 10% 3.9%;
-    --card-foreground: 240 5.9% 90%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 240 5.9% 90%;
+    --card: 20 14% 8%;
+    --card-foreground: 40 8% 95%;
+    --popover: 20 14% 8%;
+    --popover-foreground: 40 8% 95%;
 
-    --primary: 239 84% 67%;
-    --primary-foreground: 240 10% 3.9%;
-    --primary-light: 245 58% 75%;
-    --primary-dark: 239 84% 55%;
+    --primary: 45 85% 65%;
+    --primary-foreground: 20 14% 8%;
+    --primary-light: 45 80% 75%;
+    --primary-dark: 35 85% 55%;
 
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 240 5.9% 90%;
+    --secondary: 25 8% 18%;
+    --secondary-foreground: 40 8% 90%;
     
-    --accent: 269 91% 75%;
-    --accent-foreground: 240 10% 3.9%;
+    --accent: 25 45% 25%;
+    --accent-foreground: 40 8% 90%;
     
-    --success: 142 76% 46%;
-    --success-foreground: 240 10% 3.9%;
-    --warning: 38 92% 60%;
-    --warning-foreground: 240 10% 3.9%;
-    --destructive: 0 84% 70%;
-    --destructive-foreground: 240 10% 3.9%;
+    --success: 120 40% 60%;
+    --success-foreground: 20 14% 8%;
+    --warning: 35 85% 65%;
+    --warning-foreground: 20 14% 8%;
+    --destructive: 0 75% 65%;
+    --destructive-foreground: 20 14% 8%;
 
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 239 84% 67%;
+    --muted: 25 8% 18%;
+    --muted-foreground: 25 8% 65%;
+    --border: 25 8% 18%;
+    --input: 25 8% 18%;
+    --ring: 45 85% 65%;
 
-    --status-cold: 200 98% 49%;
-    --status-warm: 38 92% 60%;
-    --status-hot: 0 84% 70%;
+    --status-cold: 200 50% 60%;
+    --status-warm: 35 85% 65%;
+    --status-hot: 0 75% 65%;
     
-    --gradient-primary: linear-gradient(135deg, hsl(239 84% 67%), hsl(269 91% 75%));
-    --gradient-surface: linear-gradient(180deg, hsl(240 10% 3.9%), hsl(240 10% 8%));
-    --gradient-card: linear-gradient(145deg, hsl(240 10% 3.9%), hsl(240 3.7% 15.9%));
+    --gradient-primary: linear-gradient(135deg, hsl(45 85% 65%), hsl(35 85% 70%));
+    --gradient-surface: linear-gradient(180deg, hsl(20 14% 8%), hsl(20 12% 12%));
+    --gradient-card: linear-gradient(145deg, hsl(20 14% 8%), hsl(25 8% 18%));
     
-    --shadow-glow: 0 0 20px hsl(239 84% 67% / 0.4);
+    --shadow-glow: 0 0 20px hsl(45 85% 65% / 0.4);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -165,19 +165,19 @@ All colors MUST be HSL for consistency.
   
   .status-cold {
     @apply bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200;
-    background-color: hsl(var(--status-cold) / 0.1);
+    background-color: hsl(var(--status-cold) / 0.15);
     color: hsl(var(--status-cold));
   }
   
   .status-warm {
     @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200;
-    background-color: hsl(var(--status-warm) / 0.1);
+    background-color: hsl(var(--status-warm) / 0.15);
     color: hsl(var(--status-warm));
   }
   
   .status-hot {
     @apply bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200;
-    background-color: hsl(var(--status-hot) / 0.1);
+    background-color: hsl(var(--status-hot) / 0.15);
     color: hsl(var(--status-hot));
   }
   
