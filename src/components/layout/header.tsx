@@ -1,4 +1,5 @@
 import { Bell, Search, User } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -37,6 +38,9 @@ export function Header({ title, description, children }: HeaderProps) {
                 className="pl-10 w-80"
               />
             </div>
+
+            {/* Theme Toggle */}
+            <ThemeToggle />
 
             {/* Notifications */}
             <Button variant="ghost" size="icon" className="relative">
