@@ -18,15 +18,15 @@ import { Button } from "@/components/ui/button";
 // import logoImage from "@/assets/logo.png";
 
 const navigation = [
-  { name: "Dashboard", href: "/", icon: LayoutDashboard },
+  // { name: "Dashboard", href: "/", icon: LayoutDashboard }, // Hidden
   { name: "Leads", href: "/leads", icon: Users },
   { name: "Companies", href: "/companies", icon: Building2 },
   { name: "Contacts", href: "/contacts", icon: UserCheck },
   { name: "Jobs", href: "/jobs", icon: Briefcase },
   { name: "Tasks", href: "/tasks", icon: CheckSquare },
-  { name: "Assistant", href: "/assistant", icon: MessageSquare },
+  // { name: "Assistant", href: "/assistant", icon: MessageSquare }, // Hidden
   { name: "Profile", href: "/profile", icon: User },
-  { name: "Settings", href: "/settings", icon: Settings },
+  // { name: "Settings", href: "/settings", icon: Settings }, // Hidden
 ];
 
 interface SidebarProps {
