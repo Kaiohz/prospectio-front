@@ -7,8 +7,12 @@ import { ThemeProvider } from "@/hooks/use-theme";
 import { Layout } from "@/components/layout/layout";
 import Dashboard from "./pages/Dashboard";
 import Leads from "./pages/Leads";
+import Companies from "./pages/Companies";
+import Contacts from "./pages/Contacts";
+import Jobs from "./pages/Jobs";
 import Tasks from "./pages/Tasks";
 import Assistant from "./pages/Assistant";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,8 +28,12 @@ const App = () => (
           <Route path="/" element={<Layout />}>
             <Route index element={<Dashboard />} />
             <Route path="leads" element={<Leads />} />
+            <Route path="companies" element={<Companies />} />
+            <Route path="contacts" element={<Contacts />} />
+            <Route path="jobs" element={<Jobs />} />
             <Route path="tasks" element={<Tasks />} />
             <Route path="assistant" element={<Assistant />} />
+            <Route path="profile" element={<Profile />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

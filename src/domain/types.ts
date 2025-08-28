@@ -100,3 +100,68 @@ export interface TaskFilters {
   dateTo?: Date;
   leadId?: string;
 }
+
+// Backend entities
+export interface WorkExperience {
+  company: string;
+  position: string;
+  start_date: string;
+  end_date?: string;
+  description?: string;
+}
+
+export interface Profile {
+  job_title?: string;
+  location?: string;
+  bio?: string;
+  work_experience: WorkExperience[];
+}
+
+export interface Company {
+  id?: string;
+  name?: string;
+  industry?: string;
+  compatibility?: string;
+  source?: string;
+  location?: string;
+  size?: string;
+  revenue?: string;
+  website?: string;
+  description?: string;
+  opportunities?: string[];
+}
+
+export interface Contact {
+  company_id?: string;
+  job_id?: string;
+  name?: string;
+  email?: string;
+  title?: string;
+  phone?: string;
+  profile_url?: string;
+}
+
+export interface Job {
+  id?: string;
+  company_id?: string;
+  date_creation?: string;
+  description?: string;
+  job_title?: string;
+  location?: string;
+  salary?: string;
+  job_seniority?: string;
+  job_type?: string;
+  sectors?: string;
+  apply_url?: string[];
+  compatibility_score?: number;
+}
+
+export interface Leads {
+  companies?: Company[];
+  jobs?: Job[];
+  contacts?: Contact[];
+}
+
+export interface LeadsResult {
+  data: Leads;
+}

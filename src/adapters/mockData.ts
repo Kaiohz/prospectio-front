@@ -1,5 +1,8 @@
 // Mock data for development - Prospectio
-import { Lead, Task, DashboardMetrics, LeadActivity, LeadStatus, LeadSource, TaskType, TaskPriority } from '@/domain/types';
+import { 
+  Lead, Task, DashboardMetrics, LeadActivity, LeadStatus, LeadSource, TaskType, TaskPriority,
+  Profile, Company, Contact, Job, Leads
+} from '@/domain/types';
 
 // Generate realistic mock leads
 export const mockLeads: Lead[] = [
@@ -330,4 +333,203 @@ export const mockApi = {
       return { data: activities };
     },
   },
+};
+
+// Mock data for new entities
+export const mockProfile: Profile = {
+  job_title: "Senior Full Stack Developer",
+  location: "FR",
+  bio: "Passionate developer with 8+ years of experience in React, Node.js, and Python. Specialized in building scalable web applications and AI-powered solutions.",
+  work_experience: [
+    {
+      company: "TechCorp Solutions",
+      position: "Senior Full Stack Developer", 
+      start_date: "2020-01",
+      end_date: "2024-01",
+      description: "Led development of enterprise SaaS platform using React, Node.js, and PostgreSQL. Managed team of 5 developers."
+    },
+    {
+      company: "StartupXY",
+      position: "Full Stack Developer",
+      start_date: "2018-06",
+      end_date: "2019-12", 
+      description: "Built MVP from scratch using React and Express. Implemented CI/CD pipelines and AWS deployment."
+    }
+  ]
+};
+
+export const mockCompanies: Company[] = [
+  {
+    id: "1",
+    name: "DataFlow Systems",
+    industry: "Data Analytics",
+    compatibility: "95% compatibility",
+    source: "LinkedIn Sales Navigator",
+    location: "Paris, France",
+    size: "100-500 employees",
+    revenue: "10-50M€",
+    website: "https://dataflow-systems.com",
+    description: "Leading provider of enterprise data analytics solutions, helping companies transform their data into actionable insights.",
+    opportunities: ["React Developer", "Full Stack", "Data Visualization", "API Development"]
+  },
+  {
+    id: "2", 
+    name: "InnovateTech",
+    industry: "SaaS Technology",
+    compatibility: "87% compatibility",
+    source: "Company Database",
+    location: "Lyon, France", 
+    size: "50-200 employees",
+    revenue: "5-10M€",
+    website: "https://innovatetech.fr",
+    description: "Fast-growing SaaS company developing productivity tools for modern teams.",
+    opportunities: ["Frontend Developer", "TypeScript", "SaaS Platform", "Team Collaboration"]
+  },
+  {
+    id: "3",
+    name: "AI Solutions Corp",
+    industry: "Artificial Intelligence",
+    compatibility: "92% compatibility", 
+    source: "Industry Reports",
+    location: "Toulouse, France",
+    size: "200-1000 employees",
+    revenue: "20-100M€",
+    website: "https://aisolutions.com",
+    description: "Pioneer in AI-powered business solutions, specializing in machine learning and natural language processing.",
+    opportunities: ["AI Engineer", "Machine Learning", "Python", "LLM Integration"]
+  }
+];
+
+export const mockContacts: Contact[] = [
+  {
+    company_id: "1",
+    job_id: "1",
+    name: "Marie Dubois",
+    email: "marie.dubois@dataflow-systems.com",
+    title: "Head of Engineering",
+    phone: "+33 1 42 34 56 78",
+    profile_url: "https://linkedin.com/in/marie-dubois"
+  },
+  {
+    company_id: "1", 
+    job_id: "1",
+    name: "Thomas Martin",
+    email: "thomas.martin@dataflow-systems.com",
+    title: "CTO",
+    phone: "+33 1 42 34 56 79",
+    profile_url: "https://linkedin.com/in/thomas-martin"
+  },
+  {
+    company_id: "2",
+    job_id: "2", 
+    name: "Sophie Bernard",
+    email: "sophie.bernard@innovatetech.fr",
+    title: "VP Engineering",
+    phone: "+33 4 72 98 76 54",
+    profile_url: "https://linkedin.com/in/sophie-bernard"
+  },
+  {
+    company_id: "3",
+    job_id: "3",
+    name: "Alexandre Petit",
+    email: "alexandre.petit@aisolutions.com", 
+    title: "Lead AI Engineer",
+    phone: "+33 5 61 23 45 67",
+    profile_url: "https://linkedin.com/in/alexandre-petit"
+  }
+];
+
+export const mockJobs: Job[] = [
+  {
+    id: "1",
+    company_id: "1",
+    date_creation: "2024-01-20",
+    description: "Join our team as a Senior React Developer to build next-generation data visualization tools. Work with cutting-edge technologies including React 18, TypeScript, and D3.js.",
+    job_title: "Senior React Developer",
+    location: "Paris, France",
+    salary: "60-80k€",
+    job_seniority: "Senior",
+    job_type: "Full-time",
+    sectors: "Data Analytics, Frontend Development",
+    apply_url: ["https://dataflow-systems.com/careers/react-dev", "https://linkedin.com/jobs/react-senior"],
+    compatibility_score: 95
+  },
+  {
+    id: "2",
+    company_id: "2", 
+    date_creation: "2024-01-18",
+    description: "Looking for a Full Stack Developer to help scale our SaaS platform. Experience with React, Node.js, and PostgreSQL required.",
+    job_title: "Full Stack Developer",
+    location: "Lyon, France",
+    salary: "50-65k€", 
+    job_seniority: "Mid-level",
+    job_type: "Full-time",
+    sectors: "SaaS, Web Development",
+    apply_url: ["https://innovatetech.fr/jobs/fullstack"],
+    compatibility_score: 87
+  },
+  {
+    id: "3",
+    company_id: "3",
+    date_creation: "2024-01-22",
+    description: "AI Engineer position focused on LLM integration and prompt engineering. Work on cutting-edge AI products using Python, TensorFlow, and OpenAI APIs.",
+    job_title: "AI Engineer - LLM Specialist", 
+    location: "Toulouse, France",
+    salary: "70-90k€",
+    job_seniority: "Senior",
+    job_type: "Full-time",
+    sectors: "Artificial Intelligence, Machine Learning",
+    apply_url: ["https://aisolutions.com/careers/ai-engineer"],
+    compatibility_score: 92
+  }
+];
+
+export const mockLeadsData: Leads = {
+  companies: mockCompanies,
+  jobs: mockJobs,
+  contacts: mockContacts
+};
+
+// Extended mock API
+export const backendApi = {
+  profile: {
+    get: async () => {
+      await delay(400);
+      return { data: mockProfile };
+    },
+    upsert: async (profile: Profile) => {
+      await delay(500);
+      return { data: profile };
+    }
+  },
+
+  leads: {
+    get: async (type: 'companies' | 'jobs' | 'contacts' | 'leads', offset: number = 0) => {
+      await delay(600);
+      
+      switch (type) {
+        case 'companies':
+          const companiesSlice = mockCompanies.slice(offset, offset + 5);
+          return { data: companiesSlice };
+        case 'jobs':
+          const jobsSlice = mockJobs.slice(offset, offset + 3);
+          return { data: jobsSlice };
+        case 'contacts':
+          const contactsSlice = mockContacts.slice(offset, offset + 10);
+          return { data: contactsSlice };
+        case 'leads':
+          return { data: mockLeadsData };
+        default:
+          throw new Error('Invalid type');
+      }
+    },
+
+    insert: async (source: string, location: string, job_title: string[]) => {
+      await delay(1000);
+      return { 
+        data: mockLeadsData,
+        message: `Found new opportunities from ${source}` 
+      };
+    }
+  }
 };

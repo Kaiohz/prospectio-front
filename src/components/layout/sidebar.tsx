@@ -8,6 +8,10 @@ import {
   Settings,
   Menu,
   X,
+  Building2,
+  UserCheck,
+  Briefcase,
+  User,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -16,8 +20,12 @@ import { Button } from "@/components/ui/button";
 const navigation = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard },
   { name: "Leads", href: "/leads", icon: Users },
+  { name: "Companies", href: "/companies", icon: Building2 },
+  { name: "Contacts", href: "/contacts", icon: UserCheck },
+  { name: "Jobs", href: "/jobs", icon: Briefcase },
   { name: "Tasks", href: "/tasks", icon: CheckSquare },
   { name: "Assistant", href: "/assistant", icon: MessageSquare },
+  { name: "Profile", href: "/profile", icon: User },
   { name: "Settings", href: "/settings", icon: Settings },
 ];
 
