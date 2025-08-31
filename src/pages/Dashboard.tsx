@@ -4,7 +4,7 @@ import { Header } from "@/components/layout/header";
 import { MetricCard } from "@/components/ui/metric-card";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { mockApi } from "@/adapters/mockData";
+import { mockApi, backendApi } from "@/adapters/mockData";
 // import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, PieChart, Pie, Cell } from "recharts";
 import heroImage from "@/assets/dashboard-hero.jpg";
 
@@ -24,6 +24,17 @@ const leadStatusData = [
 ];
 
 export default function Dashboard() {
+  // Load initial data when dashboard loads
+  const { data: initialLeadsData } = useQuery({
+    queryKey: ["initial-leads-data"],
+    queryFn: () => backendApi.leads.get('leads', 0),
+  });
+
+  const { data: initialJobsData } = useQuery({
+    queryKey: ["initial-jobs-data"],
+    queryFn: () => backendApi.leads.get('jobs', 0),
+  });
+
   const { data: metrics, isLoading } = useQuery({
     queryKey: ["dashboard-metrics"],
     queryFn: () => mockApi.dashboard.getMetrics(),
