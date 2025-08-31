@@ -24,15 +24,10 @@ const leadStatusData = [
 ];
 
 export default function Dashboard() {
-  // Load initial data when dashboard loads
+  // Load initial leads data when dashboard loads
   const { data: initialLeadsData } = useQuery({
     queryKey: ["initial-leads-data"],
     queryFn: () => backendApi.leads.get('leads', 0),
-  });
-
-  const { data: initialJobsData } = useQuery({
-    queryKey: ["initial-jobs-data"],
-    queryFn: () => backendApi.leads.get('jobs', 0),
   });
 
   const { data: metrics, isLoading } = useQuery({
