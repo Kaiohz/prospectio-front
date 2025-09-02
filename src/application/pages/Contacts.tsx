@@ -1,21 +1,22 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Search, UserCheck, Mail, Phone, ExternalLink, Building2, Briefcase } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { backendApi } from '@/adapters/mockData';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/application/components/ui/card';
+import { Input } from '@/application/components/ui/input';
+import { Badge } from '@/application/components/ui/badge';
+import { Button } from '@/application/components/ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from '@/application/components/ui/avatar';
+import { backendApi } from '@/infrastructure/mockData';
 import { Contact } from '@/domain/types';
 
 export default function Contacts() {
   const [search, setSearch] = useState('');
   const [offset, setOffset] = useState(0);
+  const [limit, setLimit] = useState(12);
 
   const { data: contactsData, isLoading, error } = useQuery({
-    queryKey: ['contacts', offset],
-    queryFn: () => backendApi.leads.get('contacts', offset),
+    queryKey: ['contacts', offset, limit],
+    queryFn: () => backendApi.leads.get('contacts', offset, limit),
   });
 
   const contacts = (contactsData?.data as Contact[]) || [];
@@ -91,10 +92,10 @@ export default function Contacts() {
                 </Avatar>
                 <div className="flex-1 min-w-0">
                   <CardTitle className="text-lg truncate">
-                    {contact.name || 'Unknown Name'}
+                    {contact.name ? contact.name[0].toUpperCase() + contact.name.slice(1) : 'Unknown Name'}
                   </CardTitle>
                   <CardDescription className="truncate">
-                    {contact.title || 'No title'}
+                    {contact.title ? contact.title[0].toUpperCase() + contact.title.slice(1) : 'No title'}
                   </CardDescription>
                 </div>
               </div>
@@ -106,7 +107,7 @@ export default function Contacts() {
                 {contact.email && (
                   <div className="flex items-center text-sm">
                     <Mail className="h-4 w-4 mr-2 text-muted-foreground" />
-                    <span className="text-foreground truncate">{contact.email}</span>
+                    <span className="text-foreground">{contact.email}</span>
                   </div>
                 )}
                 {contact.phone && (
@@ -119,19 +120,19 @@ export default function Contacts() {
 
               {/* Company & Job References */}
               <div className="space-y-2">
-                {contact.company_id && (
+                {contact.company_name && (
                   <div className="flex items-center text-sm text-muted-foreground">
                     <Building2 className="h-4 w-4 mr-2" />
                     <Badge variant="outline" className="text-xs">
-                      Company ID: {contact.company_id}
+                      Company: {contact.company_name ? contact.company_name[0].toUpperCase() + contact.company_name.slice(1) : ''}
                     </Badge>
                   </div>
                 )}
-                {contact.job_id && (
+                {contact.job_title && (
                   <div className="flex items-center text-sm text-muted-foreground">
                     <Briefcase className="h-4 w-4 mr-2" />
                     <Badge variant="outline" className="text-xs">
-                      Job ID: {contact.job_id}
+                      Job Title: {contact.job_title ? contact.job_title[0].toUpperCase() + contact.job_title.slice(1) : ''}
                     </Badge>
                   </div>
                 )}
@@ -140,7 +141,7 @@ export default function Contacts() {
               {/* Actions */}
               <div className="flex gap-2 pt-2">
                 {contact.email && (
-                  <Button variant="outline" size="sm" asChild>
+                  <Button className='bg-gradient-primary text-white flex-1' variant="outline" size="sm" asChild>
                     <a href={`mailto:${contact.email}`}>
                       <Mail className="h-4 w-4 mr-1" />
                       Email
@@ -148,17 +149,13 @@ export default function Contacts() {
                   </Button>
                 )}
                 {contact.profile_url && (
-                  <Button variant="outline" size="sm" asChild>
+                  <Button className='bg-gradient-primary text-white flex-1' variant="outline" size="sm" asChild>
                     <a href={contact.profile_url} target="_blank" rel="noopener noreferrer">
                       <ExternalLink className="h-4 w-4 mr-1" />
                       Profile
                     </a>
                   </Button>
                 )}
-                <Button size="sm" className="bg-gradient-primary text-white flex-1">
-                  <UserCheck className="h-4 w-4 mr-1" />
-                  Connect
-                </Button>
               </div>
             </CardContent>
           </Card>

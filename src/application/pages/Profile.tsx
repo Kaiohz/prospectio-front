@@ -1,20 +1,20 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
-import { Plus, Trash2, User, MapPin, Briefcase, Calendar, Edit3, Save, X } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { useToast } from '@/hooks/use-toast';
-import { backendApi } from '@/adapters/mockData';
+import { Plus, Trash2, User, MapPin, Briefcase, Calendar, Edit3, Save, X, Code2 } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/application/components/ui/card';
+import { Input } from '@/application/components/ui/input';
+import { Textarea } from '@/application/components/ui/textarea';
+import { Button } from '@/application/components/ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from '@/application/components/ui/avatar';
+import { Badge } from '@/application/components/ui/badge';
+import { useToast } from '@/domain/hooks/use-toast';
+import { backendApi } from '@/infrastructure/mockData';
 import { Profile as ProfileType, WorkExperience } from '@/domain/types';
 
 export default function Profile() {
   const [isEditing, setIsEditing] = useState(false);
+  const [newTechno, setNewTechno] = useState('');
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -30,11 +30,13 @@ export default function Profile() {
       job_title: '',
       location: '',
       bio: '',
-      work_experience: []
+      work_experience: [],
+      technos: []
     }
   });
 
   const watchedExperience = watch('work_experience') || [];
+  const watchedTechnos = watch('technos') || [];
 
   const updateProfileMutation = useMutation({
     mutationFn: (profileData: ProfileType) => backendApi.profile.upsert(profileData),
@@ -79,6 +81,25 @@ export default function Profile() {
     const updated = [...watchedExperience];
     updated[index] = { ...updated[index], [field]: value };
     setValue('work_experience', updated);
+  };
+
+  const addTechno = () => {
+    if (newTechno.trim() && !watchedTechnos.includes(newTechno.trim())) {
+      setValue('technos', [...watchedTechnos, newTechno.trim()]);
+      setNewTechno('');
+    }
+  };
+
+  const removeTechno = (technoToRemove: string) => {
+    const updated = watchedTechnos.filter(techno => techno !== technoToRemove);
+    setValue('technos', updated);
+  };
+
+  const handleTechnoKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      addTechno();
+    }
   };
 
   const handleEdit = () => {
@@ -316,6 +337,78 @@ export default function Profile() {
                   <div className="text-center py-8 text-muted-foreground">
                     <Briefcase className="h-8 w-8 mx-auto mb-2" />
                     <p>No work experience added yet</p>
+                  </div>
+                )}
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Technologies */}
+        <Card>
+          <CardHeader>
+            <div className="flex justify-between items-center">
+              <div>
+                <CardTitle className="text-xl">Skills</CardTitle>
+                <CardDescription>
+                  Programming languages, frameworks, and tools you work with
+                </CardDescription>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            {isEditing ? (
+              <div className="space-y-4">
+                <div className="flex gap-2">
+                  <Input
+                    placeholder="Add a skill (e.g., React, Python, AWS...)"
+                    value={newTechno}
+                    onChange={(e) => setNewTechno(e.target.value)}
+                    onKeyPress={handleTechnoKeyPress}
+                    className="flex-1"
+                  />
+                  <Button type="button" onClick={addTechno} variant="outline" size="sm">
+                    <Plus className="h-4 w-4 mr-2" />
+                    Add
+                  </Button>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {watchedTechnos.map((techno, index) => (
+                    <Badge key={index} variant="secondary" className="flex items-center gap-1">
+                      {techno}
+                      <button
+                        type="button"
+                        onClick={() => removeTechno(techno)}
+                        className="ml-1 hover:text-destructive"
+                      >
+                        <X className="h-3 w-3" />
+                      </button>
+                    </Badge>
+                  ))}
+                </div>
+                {watchedTechnos.length === 0 && (
+                  <div className="text-center py-6 text-muted-foreground">
+                    <Code2 className="h-8 w-8 mx-auto mb-2" />
+                    <p>No technologies added yet</p>
+                    <p className="text-sm">Add your skills above</p>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div>
+                {profile?.technos && profile.technos.length > 0 ? (
+                  <div className="flex flex-wrap gap-2">
+                    {profile.technos.map((techno, index) => (
+                      <Badge key={index} variant="outline" className="flex items-center gap-1">
+                        <Code2 className="h-3 w-3" />
+                        {techno}
+                      </Badge>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-6 text-muted-foreground">
+                    <Code2 className="h-8 w-8 mx-auto mb-2" />
+                    <p>No technologies added yet</p>
                   </div>
                 )}
               </div>

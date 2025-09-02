@@ -1,20 +1,22 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Search, Building2, MapPin, Users, DollarSign, ExternalLink, Zap } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { backendApi } from '@/adapters/mockData';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/application/components/ui/card';
+import { Input } from '@/application/components/ui/input';
+import { Badge } from '@/application/components/ui/badge';
+import { Button } from '@/application/components/ui/button';
+import { backendApi } from '@/infrastructure/mockData';
 import { Company } from '@/domain/types';
 
 export default function Companies() {
   const [search, setSearch] = useState('');
   const [offset, setOffset] = useState(0);
+  const [limit, setLimit] = useState(12);
+
 
   const { data: companiesData, isLoading, error } = useQuery({
-    queryKey: ['companies', offset],
-    queryFn: () => backendApi.leads.get('companies', offset),
+    queryKey: ['companies', offset, limit],
+    queryFn: () => backendApi.leads.get('companies', offset, limit),
   });
 
   const companies = (companiesData?.data as Company[]) || [];
@@ -82,7 +84,9 @@ export default function Companies() {
                     <Building2 className="h-5 w-5 text-white" />
                   </div>
                   <div>
-                    <CardTitle className="text-lg">{company.name}</CardTitle>
+                    <CardTitle className="text-lg">
+                      {company.name ? company.name[0].toUpperCase() + company.name.slice(1) : ''}
+                    </CardTitle>
                     <CardDescription className="text-sm">
                       {company.industry}
                     </CardDescription>
@@ -122,7 +126,7 @@ export default function Companies() {
 
               {/* Description */}
               {company.description && (
-                <p className="text-sm text-muted-foreground line-clamp-3">
+                <p className="text-sm text-muted-foreground">
                   {company.description}
                 </p>
               )}
@@ -156,9 +160,6 @@ export default function Companies() {
                     </a>
                   </Button>
                 )}
-                <Button size="sm" className="bg-gradient-primary text-white">
-                  View Details
-                </Button>
               </div>
             </CardContent>
           </Card>

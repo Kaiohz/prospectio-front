@@ -335,28 +335,6 @@ export const mockApi = {
   },
 };
 
-// Mock data for new entities
-export const mockProfile: Profile = {
-  job_title: "Senior Full Stack Developer",
-  location: "FR",
-  bio: "Passionate developer with 8+ years of experience in React, Node.js, and Python. Specialized in building scalable web applications and AI-powered solutions.",
-  work_experience: [
-    {
-      company: "TechCorp Solutions",
-      position: "Senior Full Stack Developer", 
-      start_date: "2020-01",
-      end_date: "2024-01",
-      description: "Led development of enterprise SaaS platform using React, Node.js, and PostgreSQL. Managed team of 5 developers."
-    },
-    {
-      company: "StartupXY",
-      position: "Full Stack Developer",
-      start_date: "2018-06",
-      end_date: "2019-12", 
-      description: "Built MVP from scratch using React and Express. Implemented CI/CD pipelines and AWS deployment."
-    }
-  ]
-};
 
 export const mockCompanies: Company[] = [
   {
@@ -494,29 +472,37 @@ export const mockLeadsData: Leads = {
 export const backendApi = {
   profile: {
     get: async () => {
-      await delay(400);
-      return { data: mockProfile };
+      const response = await fetch('http://localhost:7002/prospectio/rest/v1/profile');
+      if (!response.ok) throw new Error('Failed to fetch profile');
+      const data = await response.json();
+      return { data };
     },
     upsert: async (profile: Profile) => {
-      await delay(500);
-      return { data: profile };
+      const response = await fetch('http://localhost:7002/prospectio/rest/v1/profile/upsert', {
+        method: 'POST', // ou 'POST' selon ton API
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(profile),
+      });
+      if (!response.ok) throw new Error('Failed to update profile');
+      const data = await response.json();
+      return { data };
     }
   },
 
   leads: {
-    get: async (type: 'companies' | 'jobs' | 'contacts' | 'leads', offset: number = 0) => {
-      await delay(600);
-      
+    get: async (type, offset, limit) => {
+      const response = await fetch(`http://localhost:7002/prospectio/rest/v1/leads/${type}/${offset}/${limit}`);
+      if (!response.ok) throw new Error('Failed to fetch jobs');
+      const data = await response.json();
       switch (type) {
-        case 'companies':
-          const companiesSlice = mockCompanies.slice(offset, offset + 5);
-          return { data: companiesSlice };
         case 'jobs':
-          const jobsSlice = mockJobs.slice(offset, offset + 3);
-          return { data: jobsSlice };
+          return { data: data.jobs };
+        case 'companies':
+          return { data: data.companies };
         case 'contacts':
-          const contactsSlice = mockContacts.slice(offset, offset + 10);
-          return { data: contactsSlice };
+          return { data: data.contacts };
         case 'leads':
           return { data: mockLeadsData };
         default:

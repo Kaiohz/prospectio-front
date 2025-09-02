@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
-  LayoutDashboard,
-  Users,
-  CheckSquare,
-  MessageSquare,
-  Settings,
   Menu,
   X,
   Building2,
@@ -14,17 +9,14 @@ import {
   User,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/application/components/ui/button";
 // import logoImage from "@/assets/logo.png";
 
 const navigation = [
-  // { name: "Dashboard", href: "/", icon: LayoutDashboard }, // Hidden
+  { name: "Profile", href: "/profile", icon: User },
+  { name: "Jobs", href: "/jobs", icon: Briefcase },
   { name: "Companies", href: "/companies", icon: Building2 },
   { name: "Contacts", href: "/contacts", icon: UserCheck },
-  { name: "Jobs", href: "/jobs", icon: Briefcase },
-  // { name: "Assistant", href: "/assistant", icon: MessageSquare }, // Hidden
-  { name: "Profile", href: "/profile", icon: User },
-  // { name: "Settings", href: "/settings", icon: Settings }, // Hidden
 ];
 
 interface SidebarProps {
@@ -45,14 +37,7 @@ export function Sidebar({ className }: SidebarProps) {
       <div className="flex items-center justify-between p-4 border-b border-border">
         {!isCollapsed && (
           <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden bg-gradient-primary">
-              <img 
-                src="/lovable-uploads/e7533d7f-8b8f-419a-82f9-84b745556f0b.png" 
-                alt="Prospectio Logo" 
-                className="w-6 h-6 object-contain filter brightness-0 invert"
-              />
-            </div>
-            <span className="text-lg font-bold text-foreground">Prospectio</span>
+            <span className="text-lg font-bold text-foreground">Menu</span>
           </div>
         )}
         <Button

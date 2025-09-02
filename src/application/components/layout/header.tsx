@@ -1,15 +1,15 @@
 import { Bell, Search, User } from "lucide-react";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { ThemeToggle } from "@/application/components/ui/theme-toggle";
+import { Button } from "@/application/components/ui/button";
+import { Input } from "@/application/components/ui/input";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+} from "@/application/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback } from "@/application/components/ui/avatar";
 
 interface HeaderProps {
   title: string;
@@ -20,13 +20,22 @@ interface HeaderProps {
 export function Header({ title, description, children }: HeaderProps) {
   return (
     <header className="bg-card border-b border-border card-shadow">
-      <div className="px-6 py-4">
+      <div className="px-6 py-2">
         <div className="flex items-center justify-between">
           <div className="flex-1">
-            <h1 className="text-2xl font-bold text-foreground">{title}</h1>
-            {description && (
-              <p className="text-sm text-muted-foreground mt-1">{description}</p>
-            )}
+            <div className="flex items-center space-x-4">
+              <div className="w-16 h-16 rounded-lg flex items-center justify-center overflow-hidden">
+                <img 
+                  src="/logo/prospectio.png" 
+                  alt="Prospectio Logo" 
+                  className="w-20 h-20"
+                />
+              </div>
+              <h1 className="text-2xl font-bold text-foreground">{title}</h1>
+              {description && (
+                <p className="text-sm text-muted-foreground mt-1">{description}</p>
+              )}
+            </div>
           </div>
 
           <div className="flex items-center space-x-4">

@@ -114,7 +114,8 @@ export interface Profile {
   job_title?: string;
   location?: string;
   bio?: string;
-  work_experience: WorkExperience[];
+  work_experience?: WorkExperience[];
+  technos?: string[];
 }
 
 export interface Company {
@@ -133,7 +134,9 @@ export interface Company {
 
 export interface Contact {
   company_id?: string;
+  company_name?: string;
   job_id?: string;
+  job_title?: string;
   name?: string;
   email?: string;
   title?: string;
@@ -144,6 +147,7 @@ export interface Contact {
 export interface Job {
   id?: string;
   company_id?: string;
+  company_name?: string;
   date_creation?: string;
   description?: string;
   job_title?: string;

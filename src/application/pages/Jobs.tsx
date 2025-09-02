@@ -1,21 +1,22 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Search, Briefcase, MapPin, DollarSign, Calendar, ExternalLink, Star, Building2 } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
-import { backendApi } from '@/adapters/mockData';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/application/components/ui/card';
+import { Input } from '@/application/components/ui/input';
+import { Badge } from '@/application/components/ui/badge';
+import { Button } from '@/application/components/ui/button';
+import { Separator } from '@/application/components/ui/separator';
+import { backendApi } from '@/infrastructure/mockData';
 import { Job } from '@/domain/types';
 
 export default function Jobs() {
   const [search, setSearch] = useState('');
   const [offset, setOffset] = useState(0);
+  const [limit, setLimit] = useState(12);
 
   const { data: jobsData, isLoading, error } = useQuery({
-    queryKey: ['jobs', offset],
-    queryFn: () => backendApi.leads.get('jobs', offset),
+    queryKey: ['jobs', offset, limit],
+    queryFn: () => backendApi.leads.get('jobs', offset, limit),
   });
 
   const jobs = (jobsData?.data as Job[]) || [];
@@ -98,19 +99,19 @@ export default function Jobs() {
                   </div>
                   <div className="flex-1">
                     <CardTitle className="text-xl mb-1">
-                      {job.job_title || 'Untitled Position'}
+                      { job.job_title ? job.job_title[0].toUpperCase() + job.job_title.slice(1) : 'Untitled Position'}
                     </CardTitle>
                     <CardDescription className="flex items-center space-x-4 text-sm">
-                      {job.company_id && (
+                      {job.company_name && (
                         <span className="flex items-center">
                           <Building2 className="h-4 w-4 mr-1" />
-                          Company {job.company_id}
+                          {job.company_name ? job.company_name[0].toUpperCase() + job.company_name.slice(1) : ''}
                         </span>
                       )}
                       {job.location && (
                         <span className="flex items-center">
                           <MapPin className="h-4 w-4 mr-1" />
-                          {job.location}
+                          {job.location ? job.location[0].toUpperCase() + job.location.slice(1) : ''}
                         </span>
                       )}
                       {job.date_creation && (
@@ -188,19 +189,6 @@ export default function Jobs() {
                     </a>
                   </Button>
                 )}
-                {job.apply_url && job.apply_url.length > 1 && (
-                  <Button variant="outline" asChild>
-                    <a href={job.apply_url[1]} target="_blank" rel="noopener noreferrer">
-                      Alternative Link
-                    </a>
-                  </Button>
-                )}
-                <Button variant="outline">
-                  Save Job
-                </Button>
-                <Button variant="outline">
-                  Contact Recruiter
-                </Button>
               </div>
             </CardContent>
           </Card>
