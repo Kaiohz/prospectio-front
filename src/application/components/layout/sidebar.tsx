@@ -14,9 +14,9 @@ import { Button } from "@/application/components/ui/button";
 
 const navigation = [
   { name: "Profile", href: "/profile", icon: User },
-  { name: "Jobs", href: "/jobs", icon: Briefcase },
-  { name: "Companies", href: "/companies", icon: Building2 },
   { name: "Contacts", href: "/contacts", icon: UserCheck },
+  { name: "Jobs", href: "/jobs", icon: Briefcase },
+  { name: "Companies", href: "/companies", icon: Building2 }
 ];
 
 interface SidebarProps {

@@ -4,6 +4,8 @@ import {
   Profile, Company, Contact, Job, Leads
 } from '@/domain/types';
 
+const baseUrl = import.meta.env.VITE_APP_BACKEND_API_URL as string;
+
 // Generate realistic mock leads
 export const mockLeads: Lead[] = [
   {
@@ -472,13 +474,13 @@ export const mockLeadsData: Leads = {
 export const backendApi = {
   profile: {
     get: async () => {
-      const response = await fetch('http://localhost:7002/prospectio/rest/v1/profile');
+      const response = await fetch(`${baseUrl}/prospectio/rest/v1/profile`);
       if (!response.ok) throw new Error('Failed to fetch profile');
       const data = await response.json();
       return { data };
     },
     upsert: async (profile: Profile) => {
-      const response = await fetch('http://localhost:7002/prospectio/rest/v1/profile/upsert', {
+      const response = await fetch(`${baseUrl}/prospectio/rest/v1/profile/upsert`, {
         method: 'POST', // ou 'POST' selon ton API
         headers: {
           'Content-Type': 'application/json',
@@ -493,7 +495,7 @@ export const backendApi = {
 
   leads: {
     get: async (type, offset, limit) => {
-      const response = await fetch(`http://localhost:7002/prospectio/rest/v1/leads/${type}/${offset}/${limit}`);
+      const response = await fetch(`${baseUrl}/prospectio/rest/v1/leads/${type}/${offset}/${limit}`);
       if (!response.ok) throw new Error('Failed to fetch jobs');
       const data = await response.json();
       switch (type) {

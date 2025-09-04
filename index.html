@@ -20,10 +20,10 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script src="http://localhost:8000/copilot/index.js"></script>
+    <script src="%VITE_APP_RAG_CHATBOT_API_URL%/copilot/index.js"></script>
     <script>
       window.mountChainlitWidget({
-        chainlitServer: "http://localhost:8000",
+        chainlitServer: "%VITE_APP_RAG_CHATBOT_API_URL%",
       });
     </script>
   </body>

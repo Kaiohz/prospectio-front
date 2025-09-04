@@ -1,73 +1,104 @@
-# Welcome to your Lovable project
+# Prospectio Frontend
 
-## Project info
+## 🚀 Features
 
-**URL**: https://lovable.dev/projects/a127db52-1a4d-46f8-9220-76d2bd0e7d41
+- **Job Opportunities**: Track and manage job postings with compatibility scoring
+- **Company Profiles**: Detailed company information and relationship management  
+- **Contact Management**: Centralized contact database with relationship mapping
+- **Dark/Light Theme**: Seamless theme switching with system preference detection
 
-## How can I edit this code?
 
-There are several ways of editing your application.
+## 🏗️ Architecture
 
-**Use Lovable**
+This project follows **Clean Architecture** and **Hexagonal Architecture** principles:
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a127db52-1a4d-46f8-9220-76d2bd0e7d41) and start prompting.
+```
+src/
+├── application/           # Application Layer - UI & Use Cases
+│   ├── components/       # Reusable UI components
+│   │   ├── layout/      # Layout components (header, sidebar, layout)
+│   │   └── ui/          # Base UI components (shadcn/ui primitives)
+│   └── pages/           # Application pages & views
+├── domain/              # Domain Layer - Business Logic
+│   ├── types.ts         # Core business entities & types
+│   └── hooks/           # Custom business logic hooks
+├── infrastructure/      # Infrastructure Layer - External Systems
+│   └── mockData.ts      # Mock API & data adapters
+└── lib/                 # Shared Utilities
+    └── utils.ts         # Common utility functions
+```
+## 🚦 Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- **Node.js** 18+ (LTS recommended)
+- **Bun** (recommended) or npm/yarn
+- **Git** for version control
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. **Clone the repository**:
+```bash
+git clone https://github.com/Kaiohz/prospectio-front.git
+cd prospectio-front
+```
 
-Follow these steps:
+2. **Install dependencies**:
+```bash
+bun install
+# or with npm
+npm install
+```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+3. **Set up environment variables**:
+```bash
+cp .env.example .env
+# Edit .env with your configuration
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+4. **Start development server**:
+```bash
+bun dev
+# or with npm
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The application will be available at `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📜 Available Scripts
 
-**Use GitHub Codespaces**
+| Command | Description |
+|---------|-------------|
+| `bun dev` | Start development server with hot reload |
+| `bun build` | Build optimized production bundle |
+| `bun build:dev` | Build in development mode |
+| `bun lint` | Run ESLint for code quality |
+| `bun preview` | Preview production build locally |
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🌍 Environment Configuration
 
-## What technologies are used for this project?
+Create a `.env` file in the root directory:
 
-This project is built with:
+```env
+# Backend API Configuration
+VITE_APP_BACKEND_API_URL=http://localhost:3000/api
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🐳 Docker Support
 
-## How can I deploy this project?
+### Development with Docker Compose
 
-Simply open [Lovable](https://lovable.dev/projects/a127db52-1a4d-46f8-9220-76d2bd0e7d41) and click on Share -> Publish.
+```bash
+# Build and start the application
+docker-compose up -d --build
 
-## Can I connect a custom domain to my Lovable project?
+# View logs
+docker-compose logs -f prospectio-front
 
-Yes, you can!
+# Stop the application
+docker-compose down
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+The application will be available at `http://localhost:5173`
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+**Built with ❤️ by the Prospectio Team**
