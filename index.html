@@ -20,5 +20,11 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script src="%VITE_APP_RAG_CHATBOT_API_URL%/copilot/index.js"></script>
+    <script>
+      window.mountChainlitWidget({
+        chainlitServer: "%VITE_APP_RAG_CHATBOT_API_URL%",
+      });
+    </script>
   </body>
 </html>

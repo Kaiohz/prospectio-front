@@ -50,7 +50,7 @@ All colors MUST be HSL for consistency.
 
     /* Lead Status Colors - Warmer variants */
     --status-cold: 200 50% 50%;
-    --status-warm: 35 85% 55%;
+    --status-warm: 40 70% 70%;
     --status-hot: 0 75% 55%;
     
     /* Gradients - Golden inspired */
@@ -88,14 +88,14 @@ All colors MUST be HSL for consistency.
   }
 
   .dark {
-    /* Dark mode - Warm dark with golden accents */
-    --background: 20 14% 8%;
+    /* Dark mode - Warm dark with golden accents - Lightened version */
+    --background: 20 14% 15%;
     --foreground: 40 8% 95%;
-    --surface: 20 12% 12%;
+    --surface: 20 12% 20%;
     
-    --card: 20 14% 8%;
+    --card: 20 14% 18%;
     --card-foreground: 40 8% 95%;
-    --popover: 20 14% 8%;
+    --popover: 20 14% 18%;
     --popover-foreground: 40 8% 95%;
 
     --primary: 45 85% 65%;
@@ -103,10 +103,10 @@ All colors MUST be HSL for consistency.
     --primary-light: 45 80% 75%;
     --primary-dark: 35 85% 55%;
 
-    --secondary: 25 8% 18%;
+    --secondary: 25 8% 25%;
     --secondary-foreground: 40 8% 90%;
     
-    --accent: 25 45% 25%;
+    --accent: 25 45% 30%;
     --accent-foreground: 40 8% 90%;
     
     --success: 120 40% 60%;
@@ -116,28 +116,28 @@ All colors MUST be HSL for consistency.
     --destructive: 0 75% 65%;
     --destructive-foreground: 20 14% 8%;
 
-    --muted: 25 8% 18%;
-    --muted-foreground: 25 8% 65%;
-    --border: 25 8% 18%;
-    --input: 25 8% 18%;
+    --muted: 25 8% 25%;
+    --muted-foreground: 25 8% 70%;
+    --border: 25 8% 28%;
+    --input: 25 8% 25%;
     --ring: 45 85% 65%;
 
     --status-cold: 200 50% 60%;
-    --status-warm: 35 85% 65%;
+    --status-warm: 40 70% 75%;
     --status-hot: 0 75% 65%;
     
     --gradient-primary: linear-gradient(135deg, hsl(45 85% 65%), hsl(35 85% 70%));
-    --gradient-surface: linear-gradient(180deg, hsl(20 14% 8%), hsl(20 12% 12%));
-    --gradient-card: linear-gradient(145deg, hsl(20 14% 8%), hsl(25 8% 18%));
+    --gradient-surface: linear-gradient(180deg, hsl(20 14% 15%), hsl(20 12% 20%));
+    --gradient-card: linear-gradient(145deg, hsl(20 14% 18%), hsl(25 8% 25%));
     
     --shadow-glow: 0 0 20px hsl(45 85% 65% / 0.4);
-    --sidebar-background: 240 5.9% 10%;
+    --sidebar-background: 240 5.9% 18%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent: 240 3.7% 22%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-border: 240 3.7% 22%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
