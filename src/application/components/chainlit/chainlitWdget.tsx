@@ -13,7 +13,6 @@ const ChainlitWidget = () => {
 
     useEffect(() => {
         if (mounted) return;
-
         chatbotService.loadWidget()
             .then(() => setMounted(true))
     }, [mounted]);
