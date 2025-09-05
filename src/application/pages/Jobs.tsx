@@ -6,7 +6,7 @@ import { Input } from '@/application/components/ui/input';
 import { Badge } from '@/application/components/ui/badge';
 import { Button } from '@/application/components/ui/button';
 import { Separator } from '@/application/components/ui/separator';
-import { backendApi } from '@/infrastructure/mockData';
+import { backendApi } from '@/infrastructure/services/mockData';
 import { Job } from '@/domain/types';
 
 export default function Jobs() {
