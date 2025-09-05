@@ -9,7 +9,7 @@ import { Button } from '@/application/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/application/components/ui/avatar';
 import { Badge } from '@/application/components/ui/badge';
 import { useToast } from '@/domain/hooks/use-toast';
-import { backendApi } from '@/infrastructure/mockData';
+import { backendApi } from '@/infrastructure/services/mockData';
 import { Profile as ProfileType, WorkExperience } from '@/domain/types';
 
 export default function Profile() {
