@@ -1,9 +1,10 @@
+import { TokenResponse } from "@/domain/entities/tokenresponse";
 import { toast } from "../../application/hooks/use-toast";
 import { ConfigRepository } from "./configRepository";
 
 declare global {
   interface Window {
-    mountChainlitWidget?: (config: { chainlitServer: string }) => void;
+    mountChainlitWidget?: (config: { chainlitServer: string , accessToken: string}) => void;
   }
 }
 
@@ -13,6 +14,32 @@ class ChatbotService {
 
   constructor() {
   }
+
+  /**
+   * Fetch a new authentication token from the API
+   * @returns Promise resolving to the TokenResponse
+   */
+  async getToken(): Promise<TokenResponse> {
+      try {
+          const response = await fetch(`${(await this.config).chatbotUrl}/rest/v1/auth/token`, {
+              method: 'GET',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'User-Agent': 'Prospectio-front/1.0.0'
+              },
+          });
+
+          if (!response.ok) {
+              const errorText = await response.text();
+              throw new Error(`Failed to get token: ${response.status} ${response.statusText} - ${errorText}`);
+          }
+
+          return await response.json();
+      } catch (error) {
+          console.error('Error fetching token:', error);
+          throw error;
+      }
+  }  
 
   /**
    * Load the chainlit widget dynamically with proper error handling and user feedback
@@ -30,7 +57,7 @@ class ChatbotService {
     }
 
     try {
-      await this.loadScript(`${(await this.config).chatbotUrl}/copilot/index.js`);
+      await this.loadScript(`${(await this.config).chatbotUrl}/chainlit/copilot/index.js`);
       this.mountWidget();
       this.isLoaded = true;
     
@@ -63,7 +90,8 @@ class ChatbotService {
   private async mountWidget(): Promise<void> {
     if (window.mountChainlitWidget) {
       window.mountChainlitWidget({
-        chainlitServer: `${(await this.config).chatbotUrl}`,
+        chainlitServer: `${(await this.config).chatbotUrl}/chainlit`,
+        accessToken: (await this.getToken()).token
       });
       
       // Apply z-index styles after mounting
