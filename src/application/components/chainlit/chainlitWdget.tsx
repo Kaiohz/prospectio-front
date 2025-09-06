@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { chatbotService } from "../../../infrastructure/services/chatbot.service";
+import { chatbotService } from "../../../infrastructure/services/chatbotService";
 
 
 /**

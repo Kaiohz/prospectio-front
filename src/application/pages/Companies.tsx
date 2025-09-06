@@ -6,7 +6,7 @@ import { Input } from '@/application/components/ui/input';
 import { Badge } from '@/application/components/ui/badge';
 import { Button } from '@/application/components/ui/button';
 import { backendApi } from '@/infrastructure/services/mockData';
-import { Company } from '@/domain/types';
+import { Company } from '@/domain/entities/types';
 
 export default function Companies() {
   const [search, setSearch] = useState('');

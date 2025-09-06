@@ -8,9 +8,9 @@ import { Textarea } from '@/application/components/ui/textarea';
 import { Button } from '@/application/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/application/components/ui/avatar';
 import { Badge } from '@/application/components/ui/badge';
-import { useToast } from '@/domain/hooks/use-toast';
+import { useToast } from '@/application/hooks/use-toast';
 import { backendApi } from '@/infrastructure/services/mockData';
-import { Profile as ProfileType, WorkExperience } from '@/domain/types';
+import { Profile as ProfileType, WorkExperience } from '@/domain/entities/types';
 
 export default function Profile() {
   const [isEditing, setIsEditing] = useState(false);

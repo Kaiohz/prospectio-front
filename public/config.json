@@ -1,0 +1,4 @@
+{
+    "chatbotUrl": "http://localhost:8000",
+    "backendUrl": "http://localhost:7002"
+}

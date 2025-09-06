@@ -1,4 +1,5 @@
-import { toast } from "../../domain/hooks/use-toast";
+import { toast } from "../../application/hooks/use-toast";
+import { ConfigRepository } from "./configRepository";
 
 declare global {
   interface Window {
@@ -7,11 +8,10 @@ declare global {
 }
 
 class ChatbotService {
-  private readonly apiUrl: string;
+  private readonly config = new ConfigRepository().getConfig();
   private isLoaded: boolean = false;
 
   constructor() {
-    this.apiUrl = import.meta.env.VITE_APP_RAG_CHATBOT_API_URL;
   }
 
   /**
@@ -20,7 +20,7 @@ class ChatbotService {
   async loadWidget(): Promise<void> {
     if (this.isLoaded) return;
 
-    if (!this.apiUrl) {
+    if (!(await this.config).chatbotUrl) {
       toast({
         variant: "destructive",
         title: "Configuration Error",
@@ -30,7 +30,7 @@ class ChatbotService {
     }
 
     try {
-      await this.loadScript(`${this.apiUrl}/copilot/index.js`);
+      await this.loadScript(`${(await this.config).chatbotUrl}/copilot/index.js`);
       this.mountWidget();
       this.isLoaded = true;
     
@@ -61,10 +61,10 @@ class ChatbotService {
   /**
    * Mount the chainlit widget with proper configuration
    */
-  private mountWidget(): void {
+  private async mountWidget(): Promise<void> {
     if (window.mountChainlitWidget) {
       window.mountChainlitWidget({
-        chainlitServer: `${this.apiUrl}`,
+        chainlitServer: `${(await this.config).chatbotUrl}`,
       });
       
       // Apply z-index styles after mounting
