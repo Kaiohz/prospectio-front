@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { LeadStatus } from "@/domain/types";
+import { LeadStatus } from "@/domain/entities/types";
 
 interface StatusBadgeProps {
   status: LeadStatus;

@@ -3,7 +3,7 @@ import { Toaster as Sonner } from "@/application/components/ui/sonner";
 import { TooltipProvider } from "@/application/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "@/domain/hooks/use-theme";
+import { ThemeProvider } from "@/application/hooks/use-theme";
 import { Layout } from "@/application/components/layout/layout";
 import  ChainlitWidget from "@/application/components/chainlit/chainlitWdget";
 import Companies from "./application/pages/Companies";

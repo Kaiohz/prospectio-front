@@ -7,7 +7,7 @@ import { Badge } from '@/application/components/ui/badge';
 import { Button } from '@/application/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/application/components/ui/avatar';
 import { backendApi } from '@/infrastructure/services/mockData';
-import { Contact } from '@/domain/types';
+import { Contact } from '@/domain/entities/types';
 
 export default function Contacts() {
   const [search, setSearch] = useState('');

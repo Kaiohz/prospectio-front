@@ -7,7 +7,7 @@ import { Badge } from '@/application/components/ui/badge';
 import { Button } from '@/application/components/ui/button';
 import { Separator } from '@/application/components/ui/separator';
 import { backendApi } from '@/infrastructure/services/mockData';
-import { Job } from '@/domain/types';
+import { Job } from '@/domain/entities/types';
 
 export default function Jobs() {
   const [search, setSearch] = useState('');
