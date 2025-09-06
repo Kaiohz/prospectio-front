@@ -6,10 +6,6 @@ services:
     container_name: prospectio-front
     ports:
       - "5173:80"
-    environment:
-      - NODE_ENV=development
-    env_file:
-      - .env.docker
     networks:
       - prospectio-network
 
