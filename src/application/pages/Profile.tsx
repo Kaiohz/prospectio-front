@@ -40,7 +40,7 @@ export default function Profile() {
   const watchedTechnos = watch('technos') || [];
 
   const updateProfileMutation = useMutation({
-    mutationFn: (profileData: ProfileType) => backendApi.profile.upsert(profileData),
+    mutationFn: (profileData: ProfileType) => backendApi.upsertProfile(profileData),
     onSuccess: () => {
       toast({
         title: "Profile updated",
