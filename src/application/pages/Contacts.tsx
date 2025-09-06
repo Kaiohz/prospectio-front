@@ -6,17 +6,18 @@ import { Input } from '@/application/components/ui/input';
 import { Badge } from '@/application/components/ui/badge';
 import { Button } from '@/application/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/application/components/ui/avatar';
-import { backendApi } from '@/infrastructure/services/mockData';
+import { BackendApiService } from '@/infrastructure/services/mockData';
 import { Contact } from '@/domain/entities/types';
 
 export default function Contacts() {
+  const backendApi = new BackendApiService();
   const [search, setSearch] = useState('');
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(12);
 
   const { data: contactsData, isLoading, error } = useQuery({
     queryKey: ['contacts', offset, limit],
-    queryFn: () => backendApi.leads.get('contacts', offset, limit),
+    queryFn: () => backendApi.getLeads('contacts', offset, limit),
   });
 
   const contacts = (contactsData?.data as Contact[]) || [];

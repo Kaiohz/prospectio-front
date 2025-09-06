@@ -5,10 +5,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/app
 import { Input } from '@/application/components/ui/input';
 import { Badge } from '@/application/components/ui/badge';
 import { Button } from '@/application/components/ui/button';
-import { backendApi } from '@/infrastructure/services/mockData';
+import { BackendApiService } from '@/infrastructure/services/mockData';
 import { Company } from '@/domain/entities/types';
 
 export default function Companies() {
+  const backendApi = new BackendApiService();
   const [search, setSearch] = useState('');
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(12);
@@ -16,7 +17,7 @@ export default function Companies() {
 
   const { data: companiesData, isLoading, error } = useQuery({
     queryKey: ['companies', offset, limit],
-    queryFn: () => backendApi.leads.get('companies', offset, limit),
+    queryFn: () => backendApi.getLeads('companies', offset, limit),
   });
 
   const companies = (companiesData?.data as Company[]) || [];

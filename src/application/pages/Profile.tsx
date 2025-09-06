@@ -9,10 +9,11 @@ import { Button } from '@/application/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/application/components/ui/avatar';
 import { Badge } from '@/application/components/ui/badge';
 import { useToast } from '@/application/hooks/use-toast';
-import { backendApi } from '@/infrastructure/services/mockData';
+import { BackendApiService } from '@/infrastructure/services/mockData';
 import { Profile as ProfileType, WorkExperience } from '@/domain/entities/types';
 
 export default function Profile() {
+  const backendApi = new BackendApiService();
   const [isEditing, setIsEditing] = useState(false);
   const [newTechno, setNewTechno] = useState('');
   const { toast } = useToast();
@@ -20,7 +21,7 @@ export default function Profile() {
 
   const { data: profileData, isLoading } = useQuery({
     queryKey: ['profile'],
-    queryFn: () => backendApi.profile.get(),
+    queryFn: () => backendApi.getProfile(),
   });
 
   const profile = profileData?.data;
