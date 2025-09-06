@@ -50,7 +50,6 @@ class ChatbotService {
   private async loadScript(src: string): Promise<void> {
     return new Promise((resolve, reject) => {
       const script = document.createElement('script');
-      console.log('Loading script:', src);
       script.src = src;
       script.onload = () => resolve();
       script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
