@@ -6,7 +6,7 @@ import { Input } from '@/application/components/ui/input';
 import { Badge } from '@/application/components/ui/badge';
 import { Button } from '@/application/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/application/components/ui/avatar';
-import { BackendApiService } from '@/infrastructure/services/mockData';
+import { BackendApiService } from '@/infrastructure/services/backendApiService';
 import { Contact } from '@/domain/entities/types';
 
 export default function Contacts() {
@@ -105,10 +105,14 @@ export default function Contacts() {
             <CardContent className="space-y-4">
               {/* Contact Info */}
               <div className="space-y-2">
-                {contact.email && (
-                  <div className="flex items-center text-sm">
-                    <Mail className="h-4 w-4 mr-2 text-muted-foreground" />
-                    <span className="text-foreground">{contact.email}</span>
+                {contact.email && contact.email.length > 0 && (
+                  <div className="space-y-1">
+                    {contact.email.map((email: string, emailIndex: number) => (
+                      <div key={emailIndex} className="flex items-center text-sm">
+                        <Mail className="h-4 w-4 mr-2 text-muted-foreground" />
+                        <span className="text-foreground">{email}</span>
+                      </div>
+                    ))}
                   </div>
                 )}
                 {contact.phone && (
