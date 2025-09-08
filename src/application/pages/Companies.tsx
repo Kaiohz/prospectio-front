@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/app
 import { Input } from '@/application/components/ui/input';
 import { Badge } from '@/application/components/ui/badge';
 import { Button } from '@/application/components/ui/button';
-import { BackendApiService } from '@/infrastructure/services/mockData';
+import { BackendApiService } from '@/infrastructure/services/backendApiService';
 import { Company } from '@/domain/entities/types';
 
 export default function Companies() {
